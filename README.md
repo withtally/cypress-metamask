@@ -2,7 +2,7 @@
 
 Interacting with you MetaMask made "easy". (Depending on how you define "easy" of course...)
 
-This plugin is based on the solutions brought by [Jakub Mucha - drptbl](https://github.com/drptbl) in [Synpress](https://github.com/Synthetixio/synpress), but with a more stripped down and (this is opinionated) simpler approach. The goal is to build a fairly straight forward solution that you can integrate into your own testing (end-to-end) flow.
+This plugin is based on the solutions brought by [Jakub Mucha - drptbl](https://github.com/drptbl) in [Synpress](https://github.com/Synthetixio/synpress), and [Thomas Ochman](https://github.com/tochman) in [cypress-metamask](https://github.com/CraftAcademyLabs/cypress-metamask). The goal of this Fork is to provide a customized version focusing on Tally needs.
 
 ### Setup
 
