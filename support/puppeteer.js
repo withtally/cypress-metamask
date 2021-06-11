@@ -36,6 +36,11 @@ module.exports = {
         metamaskWindow = page;
       }
     }
+    // check if there's an error obtaining window instances and throw
+    if(typeof mainWindow === "undefined" || typeof metamaskWindow === "undefined"){
+      throw new Error("Error assigning main windows. Please check.");
+    }
+
     return true;
   },
   async getBrowser() {

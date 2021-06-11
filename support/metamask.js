@@ -269,9 +269,18 @@ module.exports = {
       process.env.NETWORK_NAME && process.env.RPC_URL && process.env.CHAIN_ID;
 
     await puppeteer.init();
-    await puppeteer.assignWindows();
-    await puppeteer.metamaskWindow().waitForTimeout(1000);
-    await puppeteer.metamaskWindow().bringToFront()
+    let assignedWindows = await puppeteer.assignWindows();
+
+    if(!assignedWindows) throw new Error("Metamask window not properly obtained.");
+    if(puppeteer.metamaskWindow() &&
+      typeof puppeteer.metamaskWindow().waitForTimeout === 'function')
+    {
+      await puppeteer.metamaskWindow().waitForTimeout(1000);
+    } else {
+      await puppeteer.metamaskWindow().waitFor(1000);
+    }
+    
+    await puppeteer.metamaskWindow().bringToFront();
     if (
       (await puppeteer.metamaskWindow().$(unlockPageElements.unlockPage)) ===
       null
