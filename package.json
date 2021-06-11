@@ -1,6 +1,6 @@
 {
-  "name": "cypress-metamask",
-  "version": "1.0.5-development",
+  "name": "@carlos0202/cypress-metamask",
+  "version": "1.0.0",
   "main": "support/commands.js",
   "license": "MIT",
   "keywords": [
@@ -12,6 +12,7 @@
     "MetaMask",
     "Utils"
   ],
+  "types": "types/index.d.ts",
   "standard": {
     "env": [
       "cypress/globals"
@@ -42,6 +43,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CraftAcademyLabs/cypress-metamask.git"
-  }
+    "url": "git+https://github.com/withtally/cypress-metamask.git"
+  },
+  "description": "Interacting with you MetaMask made \"easy\". (Depending on how you define \"easy\" of course...)",
+  "bugs": {
+    "url": "https://github.com/withtally/cypress-metamask/issues"
+  },
+  "homepage": "https://github.com/withtally/cypress-metamask#readme",
+  "devDependencies": {},
+  "author": "Carlos González"
 }

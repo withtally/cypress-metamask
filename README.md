@@ -11,9 +11,9 @@ This plugin is based on the solutions brought by [Jakub Mucha - drptbl](https://
 Install the package using `yarn` or `npm`:
 
 ```bash
-$ yarn add -D cypress-metamask
+$ yarn add -D @carlos0202/cypress-metamask
 // or 
-$ npm i -D cypress-metamask
+$ npm i -D @carlos0202/cypress-metamask
 ```
 
 Import the plugin in `cypress/support/index.js` 
@@ -21,14 +21,14 @@ Import the plugin in `cypress/support/index.js`
 ```js
 // Import commands.js using ES2015 syntax:
 import './commands'
-import 'cypress-metamask'
+import '@carlos0202/cypress-metamask'
 ```
 
-Modify your `cypress/plugins/index.js` to include the plugin:
+Modify your `@carlos0202/cypress/plugins/index.js` to include the plugin:
 
 ```js
 module.exports = (on, config) => {
-  require('cypress-metamask/plugins')(on)
+  require('@carlos0202/cypress-metamask/plugins')(on)
 }
 ```
 
