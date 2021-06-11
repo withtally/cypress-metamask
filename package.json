@@ -1,6 +1,6 @@
 {
   "name": "@carlos0202/cypress-metamask",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "support/commands.js",
   "license": "MIT",
   "keywords": [
