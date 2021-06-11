@@ -18,9 +18,6 @@ module.exports = (on, config) => {
     }
 
     if (browser.name === 'electron') {
-      arguments_['width'] = 1920;
-      arguments_['height'] = 1080;
-      arguments_['resizable'] = false;
       return arguments_;
     }
 
