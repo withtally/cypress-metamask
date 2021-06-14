@@ -97,7 +97,7 @@ module.exports = (on, config) => {
       await puppeteer.switchToMetamaskWindow();
       return imported
     },
-    
+
     async addMetamaskNetwork(network) {
       const networkAdded = await metamask.addNetwork(network);
       return networkAdded;
@@ -131,22 +131,18 @@ module.exports = (on, config) => {
       return metamask.walletAddress();
     },
     async setupMetamask({ secretWords, network, password }) {
-      if (puppeteer.metamaskWindow()) {
-        await puppeteer.switchToCypressWindow();
-        return true
-      } else {
-        if (process.env.NETWORK_NAME) {
-          network = process.env.NETWORK_NAME;
-        }
-        if (process.env.SECRET_WORDS) {
-          secretWords = process.env.SECRET_WORDS;
-        }
-        if (process.env.PASSWORD) {
-          password = process.env.PASSWORD;
-        }
-        await metamask.initialSetup({ secretWords, network, password });
-        return true;
+      //TODO find way to check if cypress was run using Run all on cypress open
+      if (process.env.NETWORK_NAME) {
+        network = process.env.NETWORK_NAME;
       }
+      if (process.env.SECRET_WORDS) {
+        secretWords = process.env.SECRET_WORDS;
+      }
+      if (process.env.PASSWORD) {
+        password = process.env.PASSWORD;
+      }
+      await metamask.initialSetup({ secretWords, network, password });
+      return true;
     },
 
     async changeAccount(number) {

@@ -272,14 +272,8 @@ module.exports = {
     let assignedWindows = await puppeteer.assignWindows();
 
     if(!assignedWindows) throw new Error("Metamask window not properly obtained.");
-    if(puppeteer.metamaskWindow() &&
-      typeof puppeteer.metamaskWindow().waitForTimeout === 'function')
-    {
-      await puppeteer.metamaskWindow().waitForTimeout(1000);
-    } else {
-      await puppeteer.metamaskWindow().waitFor(1000);
-    }
-    
+
+    await puppeteer.metamaskWindow().waitForTimeout(1000); 
     await puppeteer.metamaskWindow().bringToFront();
     if (
       (await puppeteer.metamaskWindow().$(unlockPageElements.unlockPage)) ===
