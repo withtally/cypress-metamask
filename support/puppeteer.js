@@ -1,9 +1,12 @@
 const puppeteer = require('puppeteer-core');
 const fetch = require('node-fetch');
 
+const MAX_RETRIES = 3;
+
 let puppeteerBrowser;
 let mainWindow;
 let metamaskWindow;
+let retries = 0;
 
 module.exports = {
   puppeteerBrowser() {
@@ -29,7 +32,7 @@ module.exports = {
   },
   async assignWindows() {
     let pages = await puppeteerBrowser.pages();
-
+    console.log(`found ${pages.length} pages in this browser run.`);
     for (const page of pages) {
       if (page.url().includes('/__/#')) {
         mainWindow = page;
@@ -39,7 +42,19 @@ module.exports = {
     }
     // check if there's an error obtaining window instances and throw
     if(typeof mainWindow === "undefined" || typeof metamaskWindow === "undefined"){
-      throw new Error("Error assigning main windows. Please check.");
+      if(puppeteerBrowser.isConnected()){
+        console.log("Windows were not assigned. This might be a display error. Please check.");
+      } else {
+        if(retries < MAX_RETRIES){
+          console.log("Retrying metamask and main window retrieval...");
+          retries++;
+          await this.init();
+          await this.assignWindows();
+        } else {
+          return false;
+        }
+      }
+      
     }
 
     return true;
