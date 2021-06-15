@@ -43,7 +43,7 @@ module.exports = {
     if (typeof metamaskWindow === "undefined") {
       // Try force metamask invoke using ethereum.enable method.
       if(pages.length === 1 && !retriedMetamaskBoot){
-        mainWindow.evaluate(() => window.ethereum.enable());
+        await mainWindow.evaluate(() => window.ethereum && window.ethereum.enable());
         retriedMetamaskBoot = true;
       } else {
         throw new Error("No browser pages found or Metamask didn't start correctly...");
