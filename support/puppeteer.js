@@ -1,8 +1,6 @@
 const puppeteer = require('puppeteer-core');
 const fetch = require('node-fetch');
 
-const MAX_RETRIES = 3;
-
 let puppeteerBrowser;
 let mainWindow;
 let metamaskWindow;
@@ -41,23 +39,19 @@ module.exports = {
       }
     }
     // check if there's an error obtaining window instances and throw
-    if(typeof mainWindow === "undefined" || typeof metamaskWindow === "undefined"){
-      if(puppeteerBrowser.isConnected()){
-        console.log("Windows were not assigned. This might be a display error. Please check.");
+    let assigned = false;
+    if (typeof mainWindow === "undefined" || typeof metamaskWindow === "undefined") {
+      // Try force metamask invoke using ethereum.enable method.
+      if(pages.length === 1){
+        pages[0].evaluate(() => window.ethereum.enable());
       } else {
-        if(retries < MAX_RETRIES){
-          console.log("Retrying metamask and main window retrieval...");
-          retries++;
-          await this.init();
-          await this.assignWindows();
-        } else {
-          return false;
-        }
+        throw new Error("No browser pages found...");
       }
-      
+    } else {
+      assigned = true;
     }
 
-    return true;
+    return assigned ? true : await this.assignWindows();
   },
   async getBrowser() {
     return {
