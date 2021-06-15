@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 let puppeteerBrowser;
 let mainWindow;
 let metamaskWindow;
-let retries = 0;
+let retriedMetamaskBoot = false;
 
 module.exports = {
   puppeteerBrowser() {
@@ -40,12 +40,13 @@ module.exports = {
     }
     // check if there's an error obtaining window instances and throw
     let assigned = false;
-    if (typeof mainWindow === "undefined" || typeof metamaskWindow === "undefined") {
+    if (typeof metamaskWindow === "undefined") {
       // Try force metamask invoke using ethereum.enable method.
-      if(pages.length === 1){
-        pages[0].evaluate(() => window.ethereum.enable());
+      if(pages.length === 1 && !retriedMetamaskBoot){
+        mainWindow.evaluate(() => window.ethereum.enable());
+        retriedMetamaskBoot = true;
       } else {
-        throw new Error("No browser pages found...");
+        throw new Error("No browser pages found or Metamask didn't start correctly...");
       }
     } else {
       assigned = true;
