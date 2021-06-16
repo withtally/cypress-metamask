@@ -10,7 +10,7 @@ const metamask = require('../support/metamask');
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
   on('before:browser:launch', async (browser = {}, arguments_) => {
-    console.log('Loading MetaMask Extension')
+    console.log(`Loading MetaMask Extension. Version => ${process.env.METAMASK_VERSION}`);
     if (browser.name === 'chrome' && browser.isHeadless) {
       console.log('TRUE'); // required by cypress ¯\_(ツ)_/¯
       arguments_.args.push('--window-size=1920,1080');
@@ -33,9 +33,14 @@ module.exports = (on, config) => {
     }
 
     // NOTE: extensions cannot be loaded in headless Chrome
-    const metamaskPath = await helpers.prepareMetamask(
-      process.env.METAMASK_VERSION || '9.4.0',
-    );
+    let metamaskPath = '';
+    if(process.env.METAMASK_VERSION === 'local'){
+      metamaskPath = helpers.prepareLocalMetamaskPath();
+    } else {
+      metamaskPath = await helpers.prepareMetamask(
+        process.env.METAMASK_VERSION || '9.4.0',
+      );
+    }
     arguments_.extensions.push(metamaskPath);
     return arguments_;
   });
