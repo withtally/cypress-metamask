@@ -10,7 +10,7 @@ const metamask = require('../support/metamask');
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
   on('before:browser:launch', async (browser = {}, arguments_) => {
-    console.log(`Loading MetaMask Extension. Version => ${process.env.METAMASK_VERSION}`);
+    console.log(`Loading MetaMask Extension. Is local source? => ${process.env.METAMASK_VERSION === 'local'}`);
     if (browser.name === 'chrome' && browser.isHeadless) {
       console.log('TRUE'); // required by cypress ¯\_(ツ)_/¯
       arguments_.args.push('--window-size=1920,1080');

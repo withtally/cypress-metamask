@@ -40,9 +40,9 @@ module.exports = {
     }
     // check if there's an error obtaining window instances and throw
     let assigned = false;
-    if (typeof metamaskWindow === "undefined") {
+    if (typeof metamaskWindow === "undefined" || pages.length === 1) {
       // Try force metamask invoke using ethereum.enable method.
-      if(pages.length === 1 && !retriedMetamaskBoot){
+      if(!retriedMetamaskBoot){
         await mainWindow.evaluate(() => window.ethereum && window.ethereum.enable());
         retriedMetamaskBoot = true;
       } else {

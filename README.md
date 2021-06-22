@@ -45,6 +45,18 @@ RPC_URL=http://127.0.0.1:8545/
 CHAIN_ID=1337
 ```
 
+Also, you can load a local version of metamask using the following environment variable and value:
+
+```
+METAMASK_VERSION=local 
+```
+
+This will load a local version already downloaded inside `/support/assets/metamask` folder inside the library. You can also use a metamask extension locally available in a directory or your choice (inside project root) adding the following environment variable and value:
+
+```
+METAMASK_LOCAL_PATH=assets/metamask
+```
+
 Add these scripts to your `package.json` (or modify your existing scripts): 
 
 ```json
