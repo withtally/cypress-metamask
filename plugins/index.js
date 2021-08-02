@@ -10,7 +10,7 @@ const metamask = require('../support/metamask');
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
   on('before:browser:launch', async (browser = {}, arguments_) => {
-    console.log(`Loading MetaMask Extension. Is local source? => ${process.env.METAMASK_VERSION === 'local'}`);
+    console.log(`Loading MetaMask Extension. Is local source? => ${process.env.CY_METAMASK_LIB_METAMASK_VERSION === 'local'}`);
     if (browser.name === 'chrome' && browser.isHeadless) {
       console.log('TRUE'); // required by cypress ¯\_(ツ)_/¯
       arguments_.args.push('--window-size=1920,1080');
@@ -34,11 +34,11 @@ module.exports = (on, config) => {
 
     // NOTE: extensions cannot be loaded in headless Chrome
     let metamaskPath = '';
-    if(process.env.METAMASK_VERSION === 'local'){
+    if(process.env.CY_METAMASK_LIB_METAMASK_VERSION === 'local'){
       metamaskPath = helpers.prepareLocalMetamaskPath();
     } else {
       metamaskPath = await helpers.prepareMetamask(
-        process.env.METAMASK_VERSION || '9.4.0',
+        process.env.CY_METAMASK_LIB_METAMASK_VERSION || '9.4.0',
       );
     }
     arguments_.extensions.push(metamaskPath);
@@ -75,6 +75,11 @@ module.exports = (on, config) => {
       const notificationPage = await puppeteer.switchToMetamaskNotification();
       return notificationPage;
     },
+    async isMetamaskNotificationPageOpened() {
+      const isMetamaskNotificationPageOpened = puppeteer.isMetamaskNotificationPageOpened();
+
+      return isMetamaskNotificationPageOpened;
+    },
     async confirmMetamaskWelcomePage() {
       const confirmed = await metamask.confirmWelcomePage();
       return confirmed;
@@ -87,8 +92,8 @@ module.exports = (on, config) => {
       return unlocked;
     },
     async importMetamaskWallet({ secretWords, password }) {
-      if (process.env.SECRET_WORDS) {
-        secretWords = process.env.SECRET_WORDS;
+      if (process.env.CY_METAMASK_LIB_SECRET_WORDS) {
+        secretWords = process.env.CY_METAMASK_LIB_SECRET_WORDS;
       }
       if (process.env.PASSWORD) {
         password = process.env.PASSWORD;
@@ -108,8 +113,8 @@ module.exports = (on, config) => {
       return networkAdded;
     },
     async changeMetamaskNetwork(network) {
-      if (process.env.NETWORK_NAME) {
-        network = process.env.NETWORK_NAME;
+      if (process.env.CY_METAMASK_LIB_NETWORK_NAME) {
+        network = process.env.CY_METAMASK_LIB_NETWORK_NAME;
       } else {
         network = 'kovan';
       }
@@ -137,11 +142,11 @@ module.exports = (on, config) => {
     },
     async setupMetamask({ secretWords, network, password }) {
       //TODO find way to check if cypress was run using Run all on cypress open
-      if (process.env.NETWORK_NAME) {
-        network = process.env.NETWORK_NAME;
+      if (process.env.CY_METAMASK_LIB_NETWORK_NAME) {
+        network = process.env.CY_METAMASK_LIB_NETWORK_NAME;
       }
-      if (process.env.SECRET_WORDS) {
-        secretWords = process.env.SECRET_WORDS;
+      if (process.env.CY_METAMASK_LIB_SECRET_WORDS) {
+        secretWords = process.env.CY_METAMASK_LIB_SECRET_WORDS;
       }
       if (process.env.PASSWORD) {
         password = process.env.PASSWORD;

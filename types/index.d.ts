@@ -1,7 +1,7 @@
 /// <reference lib="dom"/>
 /// <reference types="cypress" />
 
-export {};
+export { };
 /**
  * Augmentation of Cypress namespace to make custom commands available and provide intellisense highlighting
  * and hints when using those custom methods.
@@ -103,6 +103,12 @@ declare global {
        * cy.acceptMetamaskAccess()
        */
       acceptMetamaskAccess(): Chainable<Subject>;
+      /**
+       * Checks if metamask notification page is open
+       * @example
+       * cy.acceptMetamaskAccess()
+       */
+      isMetamaskNotificationPageOpened(): Chainable<Subject>;
       /**
        * Confirm metamask atransaction
        * @example

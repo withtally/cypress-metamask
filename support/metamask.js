@@ -153,14 +153,14 @@ module.exports = {
   },
   async addNetwork(network) {
     if (
-      process.env.NETWORK_NAME &&
-      process.env.RPC_URL &&
-      process.env.CHAIN_ID
+      process.env.CY_METAMASK_LIB_NETWORK_NAME &&
+      process.env.CY_METAMASK_LIB_RPC_URL &&
+      process.env.CY_METAMASK_LIB_CHAIN_ID
     ) {
       network = {
-        networkName: process.env.NETWORK_NAME,
-        rpcUrl: process.env.RPC_URL,
-        chainId: process.env.CHAIN_ID,
+        networkName: process.env.CY_METAMASK_LIB_NETWORK_NAME,
+        rpcUrl: process.env.CY_METAMASK_LIB_RPC_URL,
+        chainId: process.env.CY_METAMASK_LIB_CHAIN_ID,
         symbol: process.env.SYMBOL,
         blockExplorer: process.env.BLOCK_EXPLORER,
         isTestnet: process.env.IS_TESTNET,
@@ -266,7 +266,7 @@ module.exports = {
   },
   async initialSetup({ secretWords, network, password }) {
     const isCustomNetwork =
-      process.env.NETWORK_NAME && process.env.RPC_URL && process.env.CHAIN_ID;
+      process.env.CY_METAMASK_LIB_NETWORK_NAME && process.env.CY_METAMASK_LIB_RPC_URL && process.env.CY_METAMASK_LIB_CHAIN_ID;
 
     await puppeteer.init();
     let assignedWindows = await puppeteer.assignWindows();

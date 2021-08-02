@@ -82,6 +82,16 @@ module.exports = {
       }
     }
   },
+  async isMetamaskNotificationPageOpened() {
+    let pages = await puppeteerBrowser.pages();
+    for (const page of pages) {
+      if (page.url().includes('notification')) {
+        return true;
+      }
+    }
+
+    return false;
+  },
   async waitFor(selector, page = metamaskWindow) {
     await page.waitForFunction(
       `document.querySelector('${selector}') && document.querySelector('${selector}').clientHeight != 0`,

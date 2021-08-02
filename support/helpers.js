@@ -87,9 +87,9 @@ module.exports = {
     return metamaskDirectory;
   },
   prepareLocalMetamaskPath(){
-    const localPath = typeof process.env.METAMASK_LOCAL_PATH === 'undefined'
+    const localPath = typeof process.env.CY_METAMASK_LIB_METAMASK_LOCAL_PATH === 'undefined'
       ? path.join(__dirname, 'assets/metamask')
-      : path.join(process.cwd(), process.env.METAMASK_LOCAL_PATH);
+      : path.join(process.cwd(), process.env.CY_METAMASK_LIB_METAMASK_LOCAL_PATH);
     
     if (!fs.existsSync(localPath)) {
       throw new Error('Metamask path could not be resolved...');
