@@ -108,7 +108,7 @@ declare global {
        * @example
        * cy.acceptMetamaskAccess()
        */
-      isMetamaskNotificationPageOpened(): Chainable<Subject>;
+      isMetamaskNotificationPageOpened(): Chainable<boolean>;
       /**
        * Confirm metamask atransaction
        * @example
