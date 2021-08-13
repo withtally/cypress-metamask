@@ -1,5 +1,5 @@
 {
-  "name": "@carlos0202/cypress-metamask",
+  "name": "@withtally/cypress-metamask",
   "version": "1.0.12",
   "main": "support/commands.js",
   "license": "MIT",
