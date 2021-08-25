@@ -14,8 +14,8 @@ const gasLimitInput = `${confirmPageGasFeeSection} .advanced-gas-inputs__gas-edi
 const totalLabel = `${confirmPageContent} div:nth-child(2) > .confirm-detail-row .currency-display-component__text`;
 const rejectButton = `${confirmPageContent} [data-testid="page-container-footer-cancel"]`;
 const confirmButton = `${confirmPageContent} [data-testid="page-container-footer-next"]`;
-const rejectSignRequestButton = `${signRequestFooter} button.btn-default:first-child`;
-const confirmSignRequestButton = `${signRequestFooter} button.button-primary:last-child`;
+const rejectSignRequestButton = `${signRequestFooter} button.btn-default`;
+const confirmSignRequestButton = `${signRequestFooter} button.button-primary`;
 
 module.exports.notificationPageElements = {
   notificationPage,
@@ -39,5 +39,5 @@ module.exports.confirmPageElements = {
   rejectButton,
   confirmButton,
   rejectSignRequestButton,
-  confirmSignRequestButton
+  confirmSignRequestButton,
 };
