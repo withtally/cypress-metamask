@@ -169,7 +169,15 @@ module.exports = (on, config) => {
     async addNetwork() {
       const network = metamask.addNetwork();
       return network;
-    }
+    },
+    async acceptSignatureRequest() {
+      const confirmed = await metamask.acceptSignatureRequest();
+      return confirmed;
+    },
+    async rejectSignatureRequest() {
+      const rejected = await metamask.rejectSignatureRequest();
+      return rejected;
+    },
   });
 
   return config;

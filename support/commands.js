@@ -93,3 +93,11 @@ Cypress.Commands.add(
     return cy.task('changeAccount', { number })
   })
 
+Cypress.Commands.add('acceptMetamaskSignatureRequest', () => {
+  return cy.task('acceptSignatureRequest');
+});
+
+Cypress.Commands.add('rejectMetamaskSignatureRequest', () => {
+  return cy.task('rejectSignatureRequest');
+});
+

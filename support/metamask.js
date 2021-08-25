@@ -296,4 +296,30 @@ module.exports = {
       return true;
     }
   },
+  async acceptSignatureRequest() {
+    await puppeteer.metamaskWindow().waitForTimeout(3000);
+    const notificationPage = await puppeteer.switchToMetamaskNotification();
+
+    await puppeteer.waitAndClick(
+      confirmPageElements.confirmSignRequestButton,
+      notificationPage,
+    );
+
+    await puppeteer.metamaskWindow().waitForTimeout(3000);
+
+    return true;
+  },
+  async rejectSignatureRequest() {
+    await puppeteer.metamaskWindow().waitForTimeout(3000);
+    const notificationPage = await puppeteer.switchToMetamaskNotification();
+
+    await puppeteer.waitAndClick(
+      confirmPageElements.rejectSignRequestButton,
+      notificationPage,
+    );
+
+    await puppeteer.metamaskWindow().waitForTimeout(3000);
+
+    return true;
+  }
 };

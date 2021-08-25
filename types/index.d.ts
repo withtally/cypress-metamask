@@ -167,6 +167,18 @@ declare global {
        * cy.etherscanWaitForTxSuccess('0xf..')
        */
       etherscanWaitForTxSuccess(txid: string): Chainable<Subject>;
+      /**
+       * Accept metamask signature transaction request
+       * @example
+       * cy.acceptMetamaskSignatureRequest()
+       */
+      acceptMetamaskSignatureRequest(): Chainable<boolean>;
+      /**
+       * Reject metamask signature transaction request
+       * @example
+       * cy.rejectMetamaskSignatureRequest()
+       */
+      rejectMetamaskSignatureRequest(): Chainable<boolean>;
     }
   }
 }
