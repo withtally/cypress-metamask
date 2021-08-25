@@ -14,7 +14,7 @@ const gasLimitInput = `${confirmPageGasFeeSection} .advanced-gas-inputs__gas-edi
 const totalLabel = `${confirmPageContent} div:nth-child(2) > .confirm-detail-row .currency-display-component__text`;
 const rejectButton = `${confirmPageContent} [data-testid="page-container-footer-cancel"]`;
 const confirmButton = `${confirmPageContent} [data-testid="page-container-footer-next"]`;
-const rejectSignRequestButton = `${signRequestFooter} button.button.btn-default.btn--large`;
+const rejectSignRequestButton = `${signRequestFooter} button.btn-default.btn--large`;
 const confirmSignRequestButton = `${signRequestFooter} button.btn-primary.btn--large`;
 
 module.exports.notificationPageElements = {
